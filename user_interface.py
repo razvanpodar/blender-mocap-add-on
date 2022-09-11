@@ -20,3 +20,6 @@ class MotionCapturePanel(bpy.types.Panel):
 
         row = layout.row()
         row.operator("scene.generate_armature")
+
+        row = layout.row()
+        row.operator("scene.link_armature")
