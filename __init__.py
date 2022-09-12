@@ -61,6 +61,8 @@ def register():
     bpy.utils.register_class(operators.MoveObject)
     bpy.utils.register_class(operators.GenerateArmature)
     bpy.utils.register_class(operators.LinkArmature)
+    bpy.utils.register_class(operators.StartCameraCapture)
+    bpy.utils.register_class(operators.StopCameraCapture)
 
 def unregister():
     """Unregister classes."""
@@ -69,3 +71,5 @@ def unregister():
     bpy.utils.unregister_class(operators.MoveObject)
     bpy.utils.unregister_class(operators.GenerateArmature)
     bpy.utils.unregister_class(operators.LinkArmature)
+    bpy.utils.unregister_class(operators.StartCameraCapture)
+    bpy.utils.unregister_class(operators.StopCameraCapture)

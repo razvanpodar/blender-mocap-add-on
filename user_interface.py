@@ -23,3 +23,9 @@ class MotionCapturePanel(bpy.types.Panel):
 
         row = layout.row()
         row.operator("scene.link_armature")
+
+        row = layout.row()
+        row.operator("scene.start_camera_capture")
+
+        row = layout.row()
+        row.operator("scene.stop_camera_capture")

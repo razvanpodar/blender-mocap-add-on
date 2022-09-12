@@ -1,4 +1,5 @@
 import bpy
+from . import motion_capture
 
 class MoveObject(bpy.types.Operator):
     """Moves the object.
@@ -176,5 +177,39 @@ class LinkArmature(bpy.types.Operator):
 
     def execute(self, context):
         """Executes the LinkArmature operator."""
+
+        return {'FINISHED'}
+
+mocap = motion_capture.MotionCapture()
+
+class StartCameraCapture(bpy.types.Operator):
+    """Starts the camera capture thread."""
+
+    bl_idname = "scene.start_camera_capture"
+    bl_label = "Start capture"
+
+    def execute(self, context):
+        """Starts the thread when the operator is executed."""
+
+        print("Operator executed")
+
+        mocap.start_camera_capture()
+        mocap.start()
+
+        return {'FINISHED'}
+
+class StopCameraCapture(bpy.types.Operator):
+    """Stops the camera capture thread."""
+
+    bl_idname = "scene.stop_camera_capture"
+    bl_label = "Stop capture"
+
+
+    def execute(self, context):
+        """Stops the thread when the operator is executed."""
+
+        print("Operator executed")
+
+        mocap.stop_camera_capture()
 
         return {'FINISHED'}
