@@ -34,11 +34,21 @@ class MotionCapture(threading.Thread):
                 frame.flags.writeable = True
                 frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
+                if results.pose_landmarks:
+                    for idx, landmark in enumerate(results.pose_landmarks.landmark):
+                        print(idx)
+                        print(landmark)
+
                 self.drawing.draw_landmarks(frame, results.pose_landmarks,
                     mp.solutions.pose.POSE_CONNECTIONS)
 
                 cv2.imshow("Frame", frame)
                 cv2.waitKey(1)
+
+                # The Q key has to be pressed multiple times before it's registered
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    self.running = False
+                    break
 
         cap.release()
         cv2.destroyAllWindows()
@@ -53,3 +63,6 @@ class MotionCapture(threading.Thread):
 
     def video_capture(self, file_path):
         """Captures the keypoints of a pose from a video."""
+
+    def set_pose(self):
+        pass

@@ -1,21 +1,30 @@
 import bpy
 from . import motion_capture
 
-class MoveObject(bpy.types.Operator):
-    """Moves the object.
+class SelectSolution(bpy.types.Operator):
+    """Select the Motion Capture Solution."""
 
-    Simple operator to test the functionality.
-    """
+    bl_idname = "scene.select_solution"
+    bl_label = "Select Solution"
 
-    bl_idname = "scene.move_object"
-    bl_label = "Move object"
+    solution_enum: bpy.props.EnumProperty(name="Solution",
+        items=[("Pose", "Pose", ""),
+               ("Hands", "Hands", ""),
+               ("Face", "Face", "")]
+    )
 
     def execute(self, context):
-        """Executes the MoveObject operator."""
-        obj = context.active_object
+        """Executes the SelectSolution operator."""
 
-        obj.location.x += 2.0
+        return {'FINISHED'}
 
+    def invoke(self, context, event):
+        """Invoke the solution dialog."""
+        return context.window_manager.invoke_props_dialog(self)
+
+    def draw(self, context):
+        """Display the options for the solution."""
+        self.layout.prop(self, "solution_enum")
         return {'FINISHED'}
 
 class GenerateArmature(bpy.types.Operator):
@@ -213,3 +222,40 @@ class StopCameraCapture(bpy.types.Operator):
         mocap.stop_camera_capture()
 
         return {'FINISHED'}
+
+
+class SelectFile(bpy.types.Operator):
+    """Selects the file from which to extract the keypoints 
+    for motion capture."""
+
+    bl_idname = "scene.select_file"
+    bl_label = "Select File"
+
+    def execute(self, context):
+        """Executes the SelectFile operator."""
+
+        print("Selecting the file...")
+
+        return {'FINISHED'}
+
+class ExtractKeypoints(bpy.types.Operator):
+    """Extracts the keypoints from the video file selected."""
+
+    bl_idname = "scene.extract_keypoints"
+    bl_label = "Extract Keypoints"
+
+    def execute(self, context):
+        """Executes the ExtractKeypoints operator."""
+
+        print("Extracting the keypoints...")
+
+class CreateAnimation(bpy.types.Operator):
+    """Maps the keypoints to the pose for each frame of the animation."""
+
+    bl_idname = "scene.create_animation"
+    bl_label = "Create Animation"
+
+    def execute(self, context):
+        """Executes the CreateAnimation operator."""
+
+        print("Creating the animation...")

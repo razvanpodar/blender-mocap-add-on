@@ -58,18 +58,25 @@ def register():
     print("Motion Capture enabled!")
 
     bpy.utils.register_class(user_interface.MotionCapturePanel)
-    bpy.utils.register_class(operators.MoveObject)
+    bpy.utils.register_class(operators.SelectSolution)
     bpy.utils.register_class(operators.GenerateArmature)
     bpy.utils.register_class(operators.LinkArmature)
     bpy.utils.register_class(operators.StartCameraCapture)
     bpy.utils.register_class(operators.StopCameraCapture)
+    bpy.utils.register_class(operators.SelectFile)
+    bpy.utils.register_class(operators.ExtractKeypoints)
+    bpy.utils.register_class(operators.CreateAnimation)
 
 def unregister():
     """Unregister classes."""
     print("Motion Capture disabled!")
     bpy.utils.unregister_class(user_interface.MotionCapturePanel)
-    bpy.utils.unregister_class(operators.MoveObject)
+    bpy.utils.unregister_class(operators.SelectSolution)
     bpy.utils.unregister_class(operators.GenerateArmature)
     bpy.utils.unregister_class(operators.LinkArmature)
     bpy.utils.unregister_class(operators.StartCameraCapture)
     bpy.utils.unregister_class(operators.StopCameraCapture)
+    bpy.utils.unregister_class(operators.SelectFile)
+    bpy.utils.unregister_class(operators.ExtractKeypoints)
+    bpy.utils.unregister_class(operators.CreateAnimation)
+
